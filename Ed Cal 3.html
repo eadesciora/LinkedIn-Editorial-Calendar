@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bain Capital | LinkedIn content operations</title>
+<style>
+:root{--indigo:#1C2156;--warm:#FEFCF6;--white:#FFFFFF;--slate1:#EBF1F9;--slate2:#ABCAE9;--slate4:#315D90;--slate5:#224064;--red1:#FDF5F4;--text:#1C2156;--muted:#315D90;--line:#D9E3F2}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--warm);color:var(--text)}
+.shell{max-width:1560px;margin:0 auto;padding:24px}.top{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:18px}.brand{display:flex;gap:18px;align-items:flex-start}.brand img{width:180px;height:auto;display:block;margin-top:2px}
+h1{margin:0;font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:34px;line-height:1.08;color:var(--indigo)}.sub{margin-top:8px;max-width:900px;color:var(--muted);font-size:14px;line-height:1.5}
+.actions,.toolbar,.mini-actions{display:flex;gap:10px;flex-wrap:wrap}
+button,select,input,textarea{background:var(--white);color:var(--indigo);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit}
+button{cursor:pointer}button.primary{background:var(--indigo);color:var(--white);border-color:var(--indigo)}
+.metrics{display:grid;grid-template-columns:repeat(7,1fr);gap:12px;margin:18px 0}
+.metric,.panel,.card,.table-wrap,.drawer-panel{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:0 1px 0 rgba(28,33,86,.03)}
+.metric .label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}.metric .value{font-family:Georgia,"Times New Roman",serif;font-size:30px;font-weight:400;margin-top:8px;color:var(--indigo)}
+.layout{display:grid;grid-template-columns:2.15fr 1fr;gap:16px}.board{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.panel h2{margin:0 0 12px 0;font-size:18px;color:var(--indigo)}
+.kicker{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}.card{padding:12px;margin-bottom:10px;cursor:pointer}.card:hover{border-color:var(--slate2)}
+.row{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.title{font-size:16px;font-weight:600;line-height:1.3;margin:8px 0}.small{font-size:13px}.muted{color:var(--muted)}
+.badge{font-size:11px;padding:5px 8px;border-radius:999px;border:1px solid var(--line);text-transform:uppercase;letter-spacing:.08em;display:inline-flex;align-items:center}
+.good{background:#EFF8F0;color:#2F7A35;border-color:#D6ECD8}.warn{background:#FFF7E8;color:#8A6400;border-color:#F1D696}.bad{background:var(--red1);color:#A61C14;border-color:#FFC9C5}.info{background:var(--slate1);color:var(--slate5);border-color:#D7E2F2}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.chip{font-size:12px;padding:6px 8px;background:var(--slate1);color:var(--slate5);border-radius:999px}
+.feed-item{padding:10px 0;border-top:1px solid #EEF3FA}.feed-item:first-child{border-top:0;padding-top:0}.table-wrap{margin-top:16px;overflow:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{padding:12px 10px;border-bottom:1px solid #EEF3FA;vertical-align:top;text-align:left}th{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.08em;position:sticky;top:0;background:var(--white)}
+.drawer{position:fixed;right:0;top:0;height:100%;width:min(700px,100%);background:var(--warm);border-left:1px solid var(--line);transform:translateX(100%);transition:.2s;padding:20px;overflow:auto;z-index:20}.drawer.open{transform:translateX(0)}
+.overlay{position:fixed;inset:0;background:rgba(28,33,86,.16);display:none;z-index:10}.overlay.open{display:block}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+textarea{width:100%;min-height:120px}.footer{margin-top:14px;color:var(--muted);font-size:12px}a{color:var(--slate4)}.right-stack .panel + .panel{margin-top:16px}.helper{color:var(--muted);font-size:12px;margin-top:8px}
+.status-dot{width:8px;height:8px;border-radius:999px;display:inline-block;margin-right:6px;transform:translateY(1px)}.dot-drafting{background:var(--slate4)}.dot-awaiting{background:#D6A11B}.dot-approved{background:#4CAF50}.dot-scheduled{background:var(--indigo)}.dot-done{background:var(--muted)}
+@media (max-width:1320px){.metrics{grid-template-columns:repeat(4,1fr)}.board{grid-template-columns:repeat(2,1fr)}.layout{grid-template-columns:1fr}}
+@media (max-width:840px){.top,.brand{flex-direction:column}.metrics{grid-template-columns:repeat(2,1fr)}.board{grid-template-columns:1fr}.grid2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="top">
+    <div class="brand">
+      <img src="bain-logo-full-color.png" alt="Bain Capital logo" />
+      <div>
+        <h1>LinkedIn content operations</h1>
+        <div class="sub">Built as an operating system for content planning and approvals. The main view is compact, the workflow is visible by stage, and full copy lives in the drawer instead of cluttering the calendar.</div>
+      </div>
+    </div>
+    <div class="actions">
+      <button onclick="loadSample()">Load sample data</button>
+      <button class="primary" onclick="openNewPost()">New post</button>
+      <button onclick="exportData()">Export JSON</button>
+      <label for="importFile" style="display:inline-flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--line);border-radius:10px;padding:10px 12px;cursor:pointer">Import JSON</label>
+      <input id="importFile" type="file" accept=".json" style="display:none" />
+    </div>
+  </div>
+  <div class="metrics" id="metrics"></div>
+  <div class="toolbar">
+    <select id="stageFilter" onchange="render()"><option value="">All stages</option><option>Idea</option><option>Drafting</option><option>Awaiting Approval</option><option>Approved</option><option>Scheduled</option><option>Posted</option><option>On Hold</option></select>
+    <select id="accountFilter" onchange="render()"><option value="">All account types</option><option>Bain Capital</option><option>Leader Account</option></select>
+    <select id="ownerFilter" onchange="render()"><option value="">All owners</option></select>
+    <select id="geoFilter" onchange="render()"><option value="">All geographies</option></select>
+    <input id="searchInput" placeholder="Search title, leader, BU, angle..." oninput="render()" />
+  </div>
+  <div class="layout">
+    <div>
+      <div class="panel">
+        <h2>Process board</h2>
+        <div class="board">
+          <div><div class="kicker"><span class="status-dot dot-drafting"></span>Drafting</div><div id="lane-drafting"></div></div>
+          <div><div class="kicker"><span class="status-dot dot-awaiting"></span>Awaiting approval</div><div id="lane-awaiting"></div></div>
+          <div><div class="kicker"><span class="status-dot dot-approved"></span>Approved</div><div id="lane-approved"></div></div>
+          <div><div class="kicker"><span class="status-dot dot-scheduled"></span>Scheduled</div><div id="lane-scheduled"></div></div>
+          <div><div class="kicker"><span class="status-dot dot-done"></span>Posted / hold</div><div id="lane-done"></div></div>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table><thead><tr><th>Date</th><th>Title</th><th>Account</th><th>Leader</th><th>BU</th><th>Geo</th><th>Owner</th><th>Approver</th><th>Angle</th><th>Stage</th><th>Status</th><th>Copy</th></tr></thead><tbody id="tableBody"></tbody></table>
+      </div>
+    </div>
+    <div class="right-stack">
+      <div class="panel"><h2>Owner workload</h2><div id="ownerList"></div></div>
+      <div class="panel"><h2>Upcoming in 7 days</h2><div id="upcomingList"></div></div>
+      <div class="panel"><h2>Approval queue</h2><div id="approvalList"></div></div>
+      <div class="panel"><h2>Needs attention</h2><div id="attentionList"></div></div>
+    </div>
+  </div>
+  <div class="footer">Rebuilt V3. Data saves locally in the browser and can be exported/imported as JSON.</div>
+</div>
+<div class="overlay" id="overlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer"></div>
+<script>
+const STORAGE_KEY='linkedinContentOpsV3Rebuilt'; let posts=[];
+function todayISO(){return new Date().toISOString().slice(0,10)}
+function addDays(n){const d=new Date(); d.setDate(d.getDate()+n); return d.toISOString().slice(0,10)}
+function daysUntil(dateStr){const now=new Date(); const target=new Date(dateStr+'T12:00:00'); return Math.round((target-now)/(1000*60*60*24))}
+function preview(text){const clean=(text||'').replace(/\s+/g,' ').trim(); return clean.length>95?clean.slice(0,95)+'...':clean}
+function statusHealth(post){if(post.stage==='Posted') return 'Complete'; if(post.stage==='On Hold') return 'Blocked'; const d=daysUntil(post.publishDate); const approvalDone=post.approvalStatus==='Approved'; const assetReady=post.assetStatus==='Ready'; const ownerAssigned=!!(post.owner||'').trim(); if(d<=1 && (!approvalDone||!assetReady||!ownerAssigned||['Idea','Drafting','Awaiting Approval'].includes(post.stage))) return 'Needs attention'; if(d<=4 && (!approvalDone||!assetReady||!ownerAssigned||['Idea','Drafting','Awaiting Approval'].includes(post.stage))) return 'Watch'; return 'On track'}
+function healthBadge(v){if(v==='Complete') return '<span class="badge good">Complete</span>'; if(v==='Blocked') return '<span class="badge bad">Blocked</span>'; if(v==='Needs attention') return '<span class="badge bad">Needs attention</span>'; if(v==='Watch') return '<span class="badge warn">Watch</span>'; return '<span class="badge good">On track</span>'}
+function stageBadge(stage){const cls=stage==='Awaiting Approval'?'warn':stage==='On Hold'?'bad':'info'; return `<span class="badge ${cls}">${stage}</span>`}
+function metric(label,value){return `<div class="metric"><div class="label">${label}</div><div class="value">${value}</div></div>`}
+function laneFor(stage){if(stage==='Idea'||stage==='Drafting') return 'drafting'; if(stage==='Awaiting Approval') return 'awaiting'; if(stage==='Approved') return 'approved'; if(stage==='Scheduled') return 'scheduled'; return 'done'}
+function save(){localStorage.setItem(STORAGE_KEY, JSON.stringify(posts))}
+function load(){const raw=localStorage.getItem(STORAGE_KEY); posts=raw?JSON.parse(raw):[]}
+function nextId(){const max=posts.reduce((m,p)=>Math.max(m, Number((p.id||'POST-0').split('-')[1]||0)),0); return 'POST-'+String(max+1).padStart(3,'0')}
+function uniqueValues(key){return [...new Set(posts.map(p=>p[key]).filter(Boolean))].sort()}
+function fillFilter(id,key,label){const el=document.getElementById(id); const current=el.value; el.innerHTML=`<option value="">All ${label}</option>`+uniqueValues(key).map(v=>`<option ${v===current?'selected':''}>${v}</option>`).join('')}
+function render(){
+  fillFilter('ownerFilter','owner','owners'); fillFilter('geoFilter','geography','geographies');
+  const stageFilter=document.getElementById('stageFilter').value, accountFilter=document.getElementById('accountFilter').value, ownerFilter=document.getElementById('ownerFilter').value, geoFilter=document.getElementById('geoFilter').value, q=document.getElementById('searchInput').value.toLowerCase().trim();
+  const enriched=posts.map(p=>({...p, health:statusHealth(p), copyPreview:preview(p.fullCopy)}));
+  let filtered=enriched.filter(p=>{ if(stageFilter&&p.stage!==stageFilter) return false; if(accountFilter&&p.accountType!==accountFilter) return false; if(ownerFilter&&p.owner!==ownerFilter) return false; if(geoFilter&&p.geography!==geoFilter) return false; if(q){const blob=[p.title,p.accountName,p.businessUnit,p.geography,p.goalAngle,p.approver,p.owner,p.fullCopy].join(' ').toLowerCase(); if(!blob.includes(q)) return false} return true; });
+  document.getElementById('metrics').innerHTML=[metric('Open posts', enriched.filter(p=>p.stage!=='Posted').length),metric('Awaiting approval', enriched.filter(p=>p.stage==='Awaiting Approval').length),metric('This week', enriched.filter(p=>daysUntil(p.publishDate)>=0&&daysUntil(p.publishDate)<=7).length),metric('Leader posts', enriched.filter(p=>p.accountType==='Leader Account').length),metric('Bain posts', enriched.filter(p=>p.accountType==='Bain Capital').length),metric('Unowned', enriched.filter(p=>!(p.owner||'').trim()).length),metric('Blocked / watch', enriched.filter(p=>['Blocked','Needs attention','Watch'].includes(p.health)).length)].join('');
+  ['drafting','awaiting','approved','scheduled','done'].forEach(id=>document.getElementById('lane-'+id).innerHTML='');
+  filtered.sort((a,b)=>a.publishDate.localeCompare(b.publishDate)).forEach(post=>{const card=`<div class="card" onclick="openPost('${post.id}')"><div class="row"><div>${healthBadge(post.health)}</div><div class="small muted">${post.publishDate}</div></div><div class="title">${post.title}</div><div class="small muted">${post.accountType}${post.accountType==='Leader Account'?' | '+(post.accountName||''):''}</div><div class="chips"><span class="chip">${post.businessUnit||'No BU'}</span><span class="chip">${post.geography||'No geo'}</span><span class="chip">${post.owner||'Unowned'}</span></div></div>`; document.getElementById('lane-'+laneFor(post.stage)).innerHTML += card; });
+  document.getElementById('tableBody').innerHTML=filtered.sort((a,b)=>a.publishDate.localeCompare(b.publishDate)).map(post=>`<tr onclick="openPost('${post.id}')" style="cursor:pointer"><td>${post.publishDate}</td><td><strong>${post.title}</strong></td><td>${post.accountType}</td><td>${post.accountType==='Leader Account'?(post.accountName||''):'—'}</td><td>${post.businessUnit||'—'}</td><td>${post.geography||'—'}</td><td>${post.owner||'—'}</td><td>${post.approver||'—'}</td><td>${post.goalAngle||'—'}</td><td>${stageBadge(post.stage)}</td><td>${healthBadge(post.health)}</td><td><a href="#" onclick="event.stopPropagation(); openPost('${post.id}')">See more</a><div class="helper">${post.copyPreview||'—'}</div></td></tr>`).join('') || '<tr><td colspan="12" class="muted">No posts match the current filters.</td></tr>';
+  const ownerCounts={}; enriched.forEach(p=>{const key=(p.owner||'Unowned'); ownerCounts[key]=(ownerCounts[key]||0)+1;});
+  document.getElementById('ownerList').innerHTML=Object.entries(ownerCounts).sort((a,b)=>b[1]-a[1]).map(([owner,count])=>`<div class="feed-item"><strong>${owner}</strong><div class="small muted">${count} post${count===1?'':'s'}</div></div>`).join('') || '<div class="small muted">No owner data yet.</div>';
+  document.getElementById('upcomingList').innerHTML=enriched.filter(p=>daysUntil(p.publishDate)>=0&&daysUntil(p.publishDate)<=7).sort((a,b)=>a.publishDate.localeCompare(b.publishDate)).slice(0,8).map(p=>`<div class="feed-item"><strong>${p.title}</strong><div class="small muted">${p.publishDate} | ${p.accountType}${p.accountType==='Leader Account'?' | '+p.accountName:''}</div></div>`).join('') || '<div class="small muted">No posts in the next 7 days.</div>';
+  document.getElementById('approvalList').innerHTML=enriched.filter(p=>p.stage==='Awaiting Approval'||(p.approvalStatus!=='Approved'&&daysUntil(p.publishDate)<=5)).sort((a,b)=>a.publishDate.localeCompare(b.publishDate)).slice(0,8).map(p=>`<div class="feed-item"><strong>${p.title}</strong><div class="small muted">${p.approver||'No approver'} | ${p.approvalStatus} | ${p.publishDate}</div></div>`).join('') || '<div class="small muted">Approval queue is clear.</div>';
+  document.getElementById('attentionList').innerHTML=enriched.filter(p=>['Blocked','Needs attention','Watch'].includes(p.health)).sort((a,b)=>a.publishDate.localeCompare(b.publishDate)).slice(0,8).map(p=>`<div class="feed-item"><strong>${p.title}</strong><div class="small muted">${p.publishDate} | ${p.stage} | ${p.owner||'Unowned'} | ${p.health}</div></div>`).join('') || '<div class="small muted">Nothing urgent right now.</div>';
+}
+function openNewPost(){openEditor({id:nextId(),title:'',publishDate:todayISO(),stage:'Idea',accountType:'Bain Capital',accountName:'',businessUnit:'',geography:'',owner:'',approver:'',goalAngle:'',audience:'',approvalStatus:'Not Started',assetStatus:'Not Started',cta:'',linkUrl:'',fullCopy:'',notes:''}, true)}
+function openPost(id){const post=posts.find(p=>p.id===id); if(post) openEditor(post,false)}
+function openEditor(post,isNew){
+  document.getElementById('overlay').classList.add('open'); const d=document.getElementById('drawer'); d.classList.add('open'); const health=statusHealth(post);
+  d.innerHTML=`<div class="row" style="margin-bottom:12px"><div>${healthBadge(health)}<h2 style="margin:10px 0 4px 0;font-size:28px;font-family:Georgia,'Times New Roman',serif;font-weight:400;">${isNew?'New LinkedIn post':(escapeHtml(post.title)||post.id)}</h2><div class="small muted">${post.id} | ${post.stage} | ${post.publishDate}</div></div><button onclick="closeDrawer()">Close</button></div>
+  <div class="drawer-panel"><div class="grid2">
+  <div><div class="kicker">Post title</div><input id="f_title" value="${escapeHtml(post.title)}" /></div>
+  <div><div class="kicker">Publish date</div><input id="f_publishDate" type="date" value="${post.publishDate}" /></div>
+  <div><div class="kicker">Stage</div><select id="f_stage">${['Idea','Drafting','Awaiting Approval','Approved','Scheduled','Posted','On Hold'].map(v=>`<option ${post.stage===v?'selected':''}>${v}</option>`).join('')}</select></div>
+  <div><div class="kicker">Account type</div><select id="f_accountType" onchange="toggleLeaderField()">${['Bain Capital','Leader Account'].map(v=>`<option ${post.accountType===v?'selected':''}>${v}</option>`).join('')}</select></div>
+  <div id="leaderWrap"><div class="kicker">Leader name</div><input id="f_accountName" value="${escapeHtml(post.accountName||'')}" /></div>
+  <div><div class="kicker">Business unit</div><input id="f_businessUnit" value="${escapeHtml(post.businessUnit)}" /></div>
+  <div><div class="kicker">Geography</div><input id="f_geography" value="${escapeHtml(post.geography)}" /></div>
+  <div><div class="kicker">Owner</div><input id="f_owner" value="${escapeHtml(post.owner)}" /></div>
+  <div><div class="kicker">Approver</div><input id="f_approver" value="${escapeHtml(post.approver)}" /></div>
+  <div><div class="kicker">Goal / angle</div><input id="f_goalAngle" value="${escapeHtml(post.goalAngle)}" /></div>
+  <div><div class="kicker">Audience</div><input id="f_audience" value="${escapeHtml(post.audience||'')}" /></div>
+  <div><div class="kicker">CTA / link label</div><input id="f_cta" value="${escapeHtml(post.cta||'')}" /></div>
+  <div><div class="kicker">Approval status</div><select id="f_approvalStatus">${['Not Started','In Review','Approved'].map(v=>`<option ${post.approvalStatus===v?'selected':''}>${v}</option>`).join('')}</select></div>
+  <div><div class="kicker">Asset status</div><select id="f_assetStatus">${['Not Started','In Progress','Ready'].map(v=>`<option ${post.assetStatus===v?'selected':''}>${v}</option>`).join('')}</select></div>
+  </div></div>
+  <div class="drawer-panel" style="margin-top:12px"><div class="kicker">Full social copy</div><textarea id="f_fullCopy" placeholder="Draft or paste the full LinkedIn copy here.">${escapeHtml(post.fullCopy||'')}</textarea><div class="helper">Table preview: ${preview(post.fullCopy||'')||'—'}</div></div>
+  <div class="grid2" style="margin-top:12px"><div class="drawer-panel"><div class="kicker">Link URL</div><input id="f_linkUrl" value="${escapeHtml(post.linkUrl||'')}" placeholder="https://..." /></div><div class="drawer-panel"><div class="kicker">Workflow notes</div><textarea id="f_notes" placeholder="Blockers, latest changes, internal handoff notes...">${escapeHtml(post.notes||'')}</textarea></div></div>
+  <div class="chips" style="margin-top:12px"><span class="chip">${health}</span><span class="chip">Approval: ${post.approvalStatus}</span><span class="chip">Assets: ${post.assetStatus}</span><span class="chip">${post.owner||'Unowned'}</span></div>
+  <div class="mini-actions" style="margin-top:14px"><button class="primary" onclick="savePost('${post.id}', ${isNew})">Save</button>${!isNew?`<button onclick="duplicatePost('${post.id}')">Duplicate</button><button onclick="deletePost('${post.id}')">Delete</button>`:''}</div>`;
+  toggleLeaderField();
+}
+function toggleLeaderField(){const type=document.getElementById('f_accountType')?.value; const wrap=document.getElementById('leaderWrap'); if(wrap) wrap.style.display=type==='Leader Account'?'block':'none'}
+function closeDrawer(){document.getElementById('overlay').classList.remove('open'); document.getElementById('drawer').classList.remove('open')}
+function savePost(id,isNew){
+  const post={id,title:document.getElementById('f_title').value.trim(),publishDate:document.getElementById('f_publishDate').value,stage:document.getElementById('f_stage').value,accountType:document.getElementById('f_accountType').value,accountName:document.getElementById('f_accountName')?document.getElementById('f_accountName').value.trim():'',businessUnit:document.getElementById('f_businessUnit').value.trim(),geography:document.getElementById('f_geography').value.trim(),owner:document.getElementById('f_owner').value.trim(),approver:document.getElementById('f_approver').value.trim(),goalAngle:document.getElementById('f_goalAngle').value.trim(),audience:document.getElementById('f_audience').value.trim(),cta:document.getElementById('f_cta').value.trim(),approvalStatus:document.getElementById('f_approvalStatus').value,assetStatus:document.getElementById('f_assetStatus').value,linkUrl:document.getElementById('f_linkUrl').value.trim(),fullCopy:document.getElementById('f_fullCopy').value.trim(),notes:document.getElementById('f_notes').value.trim()};
+  if(isNew) posts.unshift(post); else {const idx=posts.findIndex(p=>p.id===id); if(idx>=0) posts[idx]=post}
+  save(); render(); closeDrawer();
+}
+function duplicatePost(id){const existing=posts.find(p=>p.id===id); if(!existing) return; const copy={...existing,id:nextId(),title:existing.title+' (Copy)',stage:'Idea',publishDate:todayISO()}; posts.unshift(copy); save(); render(); openPost(copy.id)}
+function deletePost(id){if(!confirm('Delete this post?')) return; posts=posts.filter(p=>p.id!==id); save(); render(); closeDrawer()}
+function exportData(){const blob=new Blob([JSON.stringify({posts}, null, 2)], {type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='linkedin-content-ops-v3-rebuilt-data.json'; a.click(); URL.revokeObjectURL(a.href)}
+document.addEventListener('DOMContentLoaded',()=>{document.getElementById('importFile').addEventListener('change', async e=>{const file=e.target.files[0]; if(!file) return; const text=await file.text(); const data=JSON.parse(text); posts=Array.isArray(data)?data:(data.posts||[]); save(); render();})})
+function loadSample(){posts=[{id:'POST-001',title:'Japan expansion milestone',publishDate:addDays(2),stage:'Awaiting Approval',accountType:'Bain Capital',accountName:'',businessUnit:'Private Equity',geography:'APAC',owner:'Eddie',approver:'Sarah Kim',goalAngle:'Show investment momentum in Japan',audience:'LPs, financial industry',approvalStatus:'In Review',assetStatus:'Ready',cta:'Read more',linkUrl:'https://example.com/japan',fullCopy:'We are pleased to share a milestone in Bain Capital’s continued growth in Japan. This post highlights the strategic rationale, long-term partnership approach, and regional momentum across our APAC platform.',notes:'Awaiting final approval on first paragraph.'},{id:'POST-002',title:'Healthcare leadership POV',publishDate:addDays(1),stage:'Drafting',accountType:'Leader Account',accountName:'David Gross',businessUnit:'Healthcare',geography:'North America',owner:'Eddie',approver:'Emily Ross',goalAngle:'Position leader around healthcare innovation and value creation',audience:'LPs, sector audience',approvalStatus:'Not Started',assetStatus:'In Progress',cta:'Stay tuned',linkUrl:'',fullCopy:'Healthcare investing requires operational depth, long-term discipline, and a close understanding of where value is actually created. A few reflections from recent conversations with operators and founders...',notes:'Need cleaner opening and legal review on portfolio reference.'},{id:'POST-003',title:'Women in leadership event recap',publishDate:addDays(4),stage:'Approved',accountType:'Bain Capital',accountName:'',businessUnit:'Corporate',geography:'EMEA',owner:'Christina',approver:'Laura Chen',goalAngle:'Employer brand and culture signal',audience:'Talent, broader brand audience',approvalStatus:'Approved',assetStatus:'Ready',cta:'Learn more',linkUrl:'https://example.com/event',fullCopy:'Thank you to everyone who joined our women in leadership event this week. The conversation focused on mentorship, leadership development, and the importance of sustained investment in talent.',notes:'Ready for scheduling.'},{id:'POST-004',title:'Portfolio company CEO spotlight',publishDate:addDays(7),stage:'Scheduled',accountType:'Leader Account',accountName:'Michael Torres',businessUnit:'Portfolio Group',geography:'Global',owner:'Jason',approver:'Nina Patel',goalAngle:'Highlight operator partnership and portfolio value creation',audience:'LPs, business media',approvalStatus:'Approved',assetStatus:'Ready',cta:'Read more',linkUrl:'https://example.com/portfolio-ceo',fullCopy:'One of the most rewarding parts of the work is partnering with operators who are building resilient companies. A recent conversation with one of our portfolio company CEOs reinforced what strong execution looks like in practice.',notes:'Scheduled for next Tuesday morning.'},{id:'POST-005',title:'Deal announcement support copy',publishDate:addDays(0),stage:'Drafting',accountType:'Bain Capital',accountName:'',businessUnit:'Credit',geography:'North America',owner:'',approver:'Tom Reed',goalAngle:'Support transaction announcement with disciplined messaging',audience:'LPs, deal sources',approvalStatus:'Not Started',assetStatus:'Not Started',cta:'Read more',linkUrl:'',fullCopy:'Today we are announcing a transaction that reflects our continued focus on disciplined investing and partnership.',notes:'At risk if not approved by end of day.'},{id:'POST-006',title:'MENA office opening note',publishDate:addDays(10),stage:'Idea',accountType:'Bain Capital',accountName:'',businessUnit:'Corporate',geography:'MENA',owner:'APCO',approver:'',goalAngle:'Brand building and regional growth',audience:'Clients, talent, market observers',approvalStatus:'Not Started',assetStatus:'In Progress',cta:'Learn more',linkUrl:'',fullCopy:'We are pleased to mark another milestone in our global growth as we continue to deepen our presence in the region.',notes:'Need final confirmation on opening details.'}]; save(); render()}
+function escapeHtml(s){return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+load(); if(posts.length===0) loadSample(); else render();
+</script>
+</body>
+</html>

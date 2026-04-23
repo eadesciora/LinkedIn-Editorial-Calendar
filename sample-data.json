@@ -1,0 +1,24 @@
+{
+  "posts": [
+    {
+      "id": "POST-001",
+      "title": "Japan expansion milestone",
+      "publishDate": "2026-04-17",
+      "stage": "Awaiting Approval",
+      "accountType": "Bain Capital",
+      "accountName": "",
+      "businessUnit": "Private Equity",
+      "geography": "APAC",
+      "owner": "Eddie",
+      "approver": "Sarah Kim",
+      "goalAngle": "Show investment momentum in Japan",
+      "audience": "LPs, financial industry",
+      "approvalStatus": "In Review",
+      "assetStatus": "Ready",
+      "cta": "Read more",
+      "linkUrl": "https://example.com/japan",
+      "fullCopy": "We are pleased to share a milestone in Bain Capital\u2019s continued growth in Japan.",
+      "notes": "Awaiting final approval."
+    }
+  ]
+}
